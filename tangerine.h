@@ -63,8 +63,8 @@ void tge_start_bg_color(tge_color_t color) {
 }
 
 void tge_move_cursor(int x, int y) {
-	printf("\x1b[%d;", x);
-	printf("%dH", y);
+	printf("\x1b[%d;", y + 1);
+	printf("%dH", x + 1);
 }
 
 void tge_print_object(tge_object_t object) {
@@ -76,9 +76,6 @@ void tge_print_object(tge_object_t object) {
 
 void tge_print_group(tge_group_t group) {
 	for(unsigned int i = 0; i < group.width * group.height; i++) {
-		if(i % group.width == 0 && i) {
-			putc('\n', stdout);
-		}
 		tge_print_object(group.objects[i]);
 	}
 }
